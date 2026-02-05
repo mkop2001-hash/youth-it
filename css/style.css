@@ -139,21 +139,11 @@ address{ font-style: normal; }
   #main{ height: calc(40vh - var(--header-offset)); }
 }
 
-/* 메인 배너(스와이퍼) 컨테이너: 여기서 높이 확정 */
-#main .hero{
-  height: calc(100vh - var(--headerH));   /* fallback */
-  height: calc(100svh - var(--headerH));  /* iOS */
-  height: calc(100dvh - var(--headerH));  /* 최신 */
-  min-height: 420px;
-}
-
-/* slider height chain: 내부는 100%로 따라오게 */
-#main .hero .wrap,
-#main .hero .swiper,
-#main .hero .swiper-wrapper,
-#main .hero .swiper-slide{
-  height: 100%;
-}
+/* slider height chain */
+#main .wrap,
+#main .swiper,
+#main .swiper-wrapper,
+#main .swiper-slide{ height: 100%; }
 
 /* slide base */
 .swiper-slide{
@@ -1890,4 +1880,11 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
   }
 }
 
+@media (max-width: 959px){
+  #main .mySwiper{
+    height: calc(100svh - var(--headerH));
+    height: calc(100dvh - var(--headerH));
+    min-height: 175px;
+  }
+}
 
