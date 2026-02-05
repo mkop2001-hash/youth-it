@@ -1880,27 +1880,11 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
   }
 }
 
-@media (max-width: 959px){
-  #main .mySwiper{
-    height: calc(100svh - var(--headerH));
-    height: calc(100dvh - var(--headerH));
-    min-height: 175px;
-  }
-}
 
 /* =========================
    모바일 주소창/하단바 변화로 인한 점프 방지 (US-SERVICE)
    vh 기반 높이 영향 차단 + 레이아웃 안정화
    ========================= */
-
-#us-service,
-#us-service .inner,
-#us-service .ibox,
-#us-service .subbox,
-#us-service .itembox{
-  height: auto !important;
-  min-height: 0 !important;
-}
 
 /* 이미지 로딩/리사이즈로 인한 밀림도 같이 방지 */
 #us-service .item-right img{
@@ -1913,4 +1897,27 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
 
 @media (max-width: 959px){
   html{ scroll-behavior: auto !important; }
+}
+
+/* =========================
+   MOBILE SWIPER FIX (점프 방지)
+   ========================= */
+@media (max-width: 959px){
+
+  /* #main 높이 고정 해제 */
+  #main{
+    height: auto !important;
+  }
+
+  /* 스와이퍼 높이 안정화 */
+  #main .mySwiper{
+    height: clamp(180px, 30svh, 320px);
+  }
+
+  /* 내부 체인 유지 */
+  #main .swiper,
+  #main .swiper-wrapper,
+  #main .swiper-slide{
+    height: 100%;
+  }
 }
