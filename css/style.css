@@ -125,6 +125,10 @@ address{ font-style: normal; }
 /* ==================================================
    3) MAIN SWIPER (Hero Slider)
    ================================================== */
+.cs-icon {height: 24px; width: auto; display: inline-block;}
+.cs-icon img{height: 100%; width: auto;}
+.cs-icon .kakao{filter: invert(1);}
+
 #main{
   height: calc(var(--vh, 1vh) * 100 - var(--header-offset));
   max-width: 1600px;
@@ -217,7 +221,7 @@ address{ font-style: normal; }
   gap: 8px;
   align-items: center;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -0.2px;
   color: #1e293b;
   background: rgba(59,130,246,.08);
@@ -262,7 +266,7 @@ address{ font-style: normal; }
   gap: 8px;
   padding: 12px 14px;
   border-radius: 12px;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -0.2px;
   border: 1px solid transparent;
   transition: transform .2s ease, filter .2s ease, background .2s ease;
@@ -301,7 +305,7 @@ address{ font-style: normal; }
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 12px;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 13px;
 }
 
@@ -322,7 +326,7 @@ address{ font-style: normal; }
   padding: 16px;
   border-bottom: 1px solid var(--line);
 }
-.hero-card-title{ font-size: 16px; font-weight: 1000; }
+.hero-card-title{ font-size: 16px; font-weight: 800; }
 .hero-card-sub{ font-size: 12px; color: var(--muted); }
 
 .hero-steps{
@@ -346,12 +350,12 @@ address{ font-style: normal; }
   border-radius: 10px;
   display: grid;
   place-items: center;
-  font-weight: 1000;
+  font-weight: 600;
   color: #fff;
   background: var(--primary-grad);
 }
 
-.step-title{ font-weight: 1000; font-size: 14px; }
+.step-title{ font-weight: 800; font-size: 14px; }
 .step-desc{ font-size: 12px; color: var(--muted); }
 
 .hero-mini-cta{
@@ -441,11 +445,11 @@ address{ font-style: normal; }
   border: 1px solid #bfdbfe;
   color: #1d4ed8;
   font-size: 12px;
-  font-weight: 1000;
+  font-weight: 800;
   animation: pulseGlow 3s infinite;
 }
 
-.card-title{ font-size: 18px; font-weight: 1000; }
+.card-title{ font-size: 18px; font-weight: 800; }
 .card-sub{ font-size: 13px; color: var(--muted); }
 
 .card-list{
@@ -459,10 +463,12 @@ address{ font-style: normal; }
   margin-top: auto;
   padding: 12px 14px;
   border-radius: 12px;
-  font-weight: 1000;
+  font-weight: 800;
   background: #f1f5f9;
   border: 1px solid var(--line);
   transition: transform .2s ease;
+  display: flex; align-items: center;
+  gap: 2.5%;
 }
 .card-cta:hover{ transform: translateY(-2px); }
 
@@ -533,6 +539,7 @@ address{ font-style: normal; }
 .subtext{
   font-size: clamp(16px, 1.8vw, 20px);
   text-align: center;
+  font-weight: 600;
 }
 
 .ibox{
@@ -543,7 +550,7 @@ address{ font-style: normal; }
   text-align: center;
 }
 
-.ser-icon{ word-break: keep-all; }
+.ser-icon{ word-break: keep-all; font-weight: 500; color: #444;}
 .ser-icon p{ margin-top: clamp(6px, 5vw, 16px); }
 
 .subbox{
@@ -687,7 +694,7 @@ address{ font-style: normal; }
   border-radius: 999px;
   background: rgba(37,99,235,.08);
   border: 1px solid rgba(37,99,235,.18);
-  font-weight: 900;
+  font-weight: 600;
   font-size: 13px;
   white-space: nowrap;
 }
@@ -749,7 +756,7 @@ address{ font-style: normal; }
 
 .case-meta{
   margin: 0 0 6px;
-  font-weight: 1000;
+  font-weight: 800;
   letter-spacing: -0.2px;
   color: var(--ink);
 }
@@ -771,7 +778,7 @@ address{ font-style: normal; }
 
 .cases-link{
   display: inline-block;
-  font-weight: 1000;
+  font-weight: 800;
   color: var(--primary);
   letter-spacing: -0.2px;
   position: relative;
@@ -808,7 +815,7 @@ address{ font-style: normal; }
 .info-title{
   margin: 0 0 6px;
   font-size: 18px;
-  font-weight: 1000;
+  font-weight: 800;
   letter-spacing: -0.2px;
 }
 .info-desc{
@@ -830,7 +837,7 @@ address{ font-style: normal; }
 
 .faq-item summary{
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 600;
   color: var(--ink);
   letter-spacing: -0.2px;
   list-style: none;
@@ -840,7 +847,7 @@ address{ font-style: normal; }
 .faq-item summary::after{
   content: "+";
   float: right;
-  font-weight: 1000;
+  font-weight: 600;
   color: var(--primary);
 }
 .faq-item[open] summary::after{ content: "–"; }
@@ -868,7 +875,7 @@ address{ font-style: normal; }
 }
 
 .tips strong{
-  font-weight: 1000;
+  font-weight: 600;
   letter-spacing: -0.2px;
   color: var(--ink);
 }
@@ -882,7 +889,7 @@ address{ font-style: normal; }
 
 .tips-link{
   display: inline-block;
-  font-weight: 1000;
+  font-weight: 800;
   color: var(--primary);
   letter-spacing: -0.2px;
 }
@@ -934,70 +941,6 @@ address{ font-style: normal; }
   font-size: 13px;
   color: #64748b;
   line-height: 1.6;
-}
-
-/* ==================================================
-   12) QUICK CONTACT
-   ================================================== */
-.quick-contact{
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 9999;
-}
-
-.qc-fab{
-  display: none; /* desktop에서만 */
-  padding: 12px 14px;
-  border-radius: 999px;
-  background: var(--primary-grad);
-  color: #fff;
-  font-weight: 1000;
-  box-shadow: var(--shadow-float);
-}
-
-.qc-panel{
-  display: none; /* desktop에서만 */
-  width: 220px;
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 16px;
-  background: rgba(255,255,255,.88);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-soft);
-}
-
-.qc-item{
-  display: flex;
-  justify-content: space-between;
-  padding: 12px;
-  border-radius: 12px;
-  background: var(--soft);
-  border: 1px solid var(--line);
-  font-weight: 1000;
-}
-
-.qc-sub{ font-size: 12px; color: var(--muted); }
-.qc-hint{ font-size: 12px; color: var(--muted); }
-
-.qc-mobilebar{
-  position: fixed;
-  left: 0; right: 0;
-  bottom: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  background: #0f172a;
-  padding: 10px;
-  z-index: 9998;
-}
-.qc-mbtn{
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  padding: 12px;
-  color: #fff;
-  font-weight: 900;
 }
 
 /* ==================================================
@@ -1090,6 +1033,7 @@ address{ font-style: normal; }
   gap: 24px;
   padding: clamp(24px, 2vw, 30px) clamp(40px, 4vw, 60px);
 }
+.np-right p {font-weight: 800;}
 
 .np-card{
   display: grid;
@@ -1211,7 +1155,7 @@ address{ font-style: normal; }
 }
 .mnav-brand{
   margin: 0;
-  font-weight: 1000;
+  font-weight: 600;
   letter-spacing: -0.3px;
 }
 .mnav-close{
@@ -1234,7 +1178,7 @@ address{ font-style: normal; }
   border-radius: 14px;
   border: 1px solid var(--line);
   background: #fff;
-  font-weight: 1000;
+  font-weight: 600;
   letter-spacing: -0.2px;
   transition: transform .18s ease, background .18s ease, border-color .18s ease;
 }
@@ -1261,7 +1205,7 @@ address{ font-style: normal; }
   border-radius: 14px;
   border: 1px solid var(--line);
   background: var(--soft);
-  font-weight: 1000;
+  font-weight: 600;
 }
 .mnav-cta-btn.primary{
   border-color: transparent;
@@ -1323,6 +1267,206 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
     width: 88%;
   }
 }
+
+#finish{
+  padding: clamp(40px, 6vw, 72px) clamp(30px, 6vw, 56px);
+}
+
+/* PC 기본 */
+.finish-inner{
+  position: relative;
+  padding: clamp(40px, 6vw, 72px) clamp(80px, 20vw, 160px);
+  border-radius: 24px;
+  overflow: hidden;
+
+  /* 배경 + 오버레이(그라데이션) 한 번에 */
+  background:
+    linear-gradient(to right, rgba(0,0,0,.75), rgba(0,0,0,.15)),
+    url(../images/bottem-banner9.jpg) no-repeat center/cover;
+
+  /* 센터보다 약간 아래 */
+  background-position: center 70%;
+}
+
+/* 텍스트 */
+.fs-title{
+  font-size: 48px;
+  color: #fff;
+  line-height: 1.1;         /* ✅ 큰 타이틀 안전 */
+  letter-spacing: -0.6px;
+  word-break: keep-all;
+}
+
+.fs-sub{
+  margin-top: 10px;         /* ✅ 타이틀-서브 간격 */
+  margin-bottom: 100px;
+  font-size: 24px;
+  color: rgba(255,255,255,.85); /* ✅ #ddd보다 자연스럽게 */
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* CTA 버튼 */
+.fs-link a{
+  display: inline-flex;      /* ✅ 텍스트+화살표 정렬 좋아짐 */
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,.85);
+  border-radius: 12px;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+  font-weight: 600;
+}
+
+.fs-link a:hover{
+  background: rgba(255,255,255,.10);
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+
+.fs-link a::after{
+  content: " →";
+  transition: transform .2s ease;
+}
+
+.fs-link a:hover::after{
+  transform: translateX(4px);
+}
+
+.swiper-link{
+  position: absolute;
+  z-index: 2;
+  bottom: 20%;
+  left: 7%;
+}
+
+/* 공통 버튼 */
+.swiper-link a{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.swiper-link a::after{
+  content: " →";
+  transition: transform .2s ease;
+}
+
+.swiper-link a:hover{
+  background: rgba(255,255,255,.10);
+  transform: translateY(-1px);
+}
+
+.swiper-link a:hover::after{
+  transform: translateX(4px);
+}
+
+/* 기본(블랙) */
+.swiper-link a{
+  color: #000;
+  border: 2px solid rgba(0,0,0,.85);
+  font-weight: 600;
+}
+.swiper-link a:hover{
+  border-color: #000;
+}
+
+/* 화이트 변형 */
+.swiper-link a.white{
+  color: #fff;
+  border-color: rgba(255,255,255,.85);
+}
+.swiper-link a.white:hover{
+  border-color: #fff;
+}
+
+@media (max-width: 768px){
+
+  .swiper-link{
+    left: 7%;          /* PC와 동일한 왼쪽 기준 */
+    bottom: 20%;
+    width: 60%;        /* 화면의 60%만 차지 */
+    transform: none;   /* 가운데 정렬 제거 */
+  }
+
+  .swiper-link a{
+    width: 100%;
+    justify-content: center;
+    padding: 12px 14px;
+    font-size: 13px;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+  }
+
+  /* 화이트 버튼 가독성 보강 */
+  .swiper-link a.white{
+    background: rgba(0,0,0,.25);
+    backdrop-filter: blur(6px);
+  }
+}
+
+
+
+/* =========================
+   FINISH - Mobile polish
+   ========================= */
+@media (max-width: 768px){
+
+  #finish{
+    padding: 28px 16px;
+  }
+
+  .finish-inner{
+    /* 좌우 패딩 과다 → 모바일용으로 축소 */
+    padding: 28px 18px;
+    border-radius: 18px;
+
+    /* 이미지가 아래쪽 더 보이게 */
+    background-position: center 75%;
+
+    /* 그라데이션 너무 진하면 살짝 낮추기(선택) */
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.20)),
+      url(../images/bottem-banner9.jpg) no-repeat center/cover;
+  }
+
+  .fs-title{
+    font-size: clamp(22px, 6.2vw, 30px);
+    line-height: 1.15;
+    letter-spacing: -0.4px;
+    word-break: keep-all;
+  }
+
+  .fs-sub{
+    margin-top: 10px;
+    margin-bottom: 18px; /* 100px → 축소 */
+    font-size: clamp(13px, 3.8vw, 16px);
+    line-height: 1.6;
+    color: rgba(255,255,255,.88);
+    word-break: keep-all;
+  }
+
+  .fs-link a{
+    width: 100%;
+    text-align: center;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.75);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* 아주 작은 폰 (선택) */
+@media (max-width: 420px){
+  .finish-inner{ padding: 24px 16px; }
+  .fs-title{ font-size: 22px; }
+}
+
 
 
  /* === Board Namespace Only === */
@@ -1559,3 +1703,181 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
       font-size:13px;
       display:none;
     }
+    
+/* =========================
+   Quick Contact - FINAL (PC always-on panel)
+   ========================= */
+
+/* 공통 위치 */
+.quick-contact{
+  position: fixed;
+  right: 5px;
+  bottom: 10%;
+  z-index: 9999;
+}
+
+
+
+/* hidden 속성 처리 */
+.qc-panel[hidden],
+.qc-menu[hidden]{ display:none !important; }
+
+
+/* 기본값: 모바일 전용은 숨김(PC에서 안 보이게) */
+.qc-mfab,
+.qc-menu{ display:none; }
+
+
+
+/* =========================
+   Desktop (PC)
+   ========================= */
+@media (min-width: 960px){
+  /* PC에서는 패널 항상 보이기 */
+  .qc-panel{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 120px;
+    margin-top: 0;             
+    padding: 12px;
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    background: var(--primary-grad);
+    color: #fff;
+    box-shadow: var(--shadow-float);
+  }
+
+.qc-panel:hover{
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.qc-item .item-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+} 
+
+
+}
+
+/* =========================
+   Mobile
+   ========================= */
+@media (max-width: 959px){
+  /* 모바일에서는 떠있는 패널 숨김 */
+  .qc-panel{ display:none !important; }
+
+  /* 위치는 모바일은 아래가 더 자연스러움 */
+  .quick-contact{
+    bottom: 18px;
+    right: 18px;
+  }
+
+  /* 하단바는 숨김(요청사항) */
+  .qc-mobilebar{ display:none !important; }
+
+  /* 빠른상담 버튼 */
+  .qc-mfab{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 14px;
+    border-radius: 18px;
+    background: var(--primary-grad);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: var(--shadow-float);
+  }
+
+  /* 우측 상단 메뉴(열렸을 때만 보이게: hidden 토글) */
+  .qc-menu{
+    position: absolute;     /* ✅ 버튼 기준으로 */
+    right: 0;
+    bottom: calc(100% + 10px); /* ✅ 버튼 위 10px */
+    z-index: 9999;
+
+    display: grid;
+    gap: 10px;
+
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 12px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 40px rgba(15,23,42,.14);
+    min-width: 160px;
+  }
+
+  .qc-close{
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: #fff;
+    font-weight: 800;
+  }
+
+  .qc-mitem{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 12px;
+    border-radius: 12px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    font-weight: 800;
+  }
+}
+
+/* =========================
+   Scroll Top Button (독립형)
+   ========================= */
+.scroll-top{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9998;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 30px;
+  background: #0a1e4d;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 28px rgba(15,23,42,.25);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all .25s ease;
+}
+
+/* 나타나는 상태 */
+.scroll-top.is-show{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* 모바일에서 문의 버튼 위로 올리기 */
+@media (max-width: 959px){
+  .scroll-top{
+    bottom: 76px; /* 빠른상담 버튼 위 */
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    border-radius: 14px;
+  }
+}
+
+
