@@ -1889,29 +1889,28 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
 }
 
 /* =========================
-   US-SERVICE 점프(레이아웃 쉬프트) 방지
-   큰 이미지(리스트/절차/사례) 로딩 전에도 공간 확보
+   모바일 주소창/하단바 변화로 인한 점프 방지 (US-SERVICE)
+   vh 기반 높이 영향 차단 + 레이아웃 안정화
    ========================= */
 
-/* PC/모바일 공통: 이미지 공간 미리 확보 */
-#us-service .item-right{
-  width: 100%;
+#us-service,
+#us-service .inner,
+#us-service .ibox,
+#us-service .subbox,
+#us-service .itembox{
+  height: auto !important;
+  min-height: 0 !important;
 }
 
+/* 이미지 로딩/리사이즈로 인한 밀림도 같이 방지 */
 #us-service .item-right img{
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
-
-  /* ✅ 로딩 전에도 높이(비율) 확정 → 점프 방지 */
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 9; /* 로딩 전 공간 확보 */
 }
 
-/* PC에서 카드 높이도 같이 안정화 (선택이지만 효과 큼) */
-@media (min-width: 960px){
-  #us-service .itembox{
-    align-items: stretch;
-  }
+@media (max-width: 959px){
+  html{ scroll-behavior: auto !important; }
 }
-
