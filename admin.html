@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>관리자</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 24px; }
+    input, textarea, button, select { padding: 8px 10px; margin: 6px 0; }
+    button { cursor: pointer; }
+    table { width: 100%; max-width: 980px; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f6f6f6; }
+    .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .muted { color:#666; font-size: 13px; }
+    .danger { background:#ef4444; color:#fff; border:0; padding:8px 10px; border-radius:8px; }
+    .btn { border:1px solid #ddd; border-radius:8px; background:#fff; }
+    .thumb { width: 90px; height: 56px; object-fit: cover; border-radius: 10px; border:1px solid #eee; background:#f3f4f6; }
+    hr { margin: 18px 0; border: 0; border-top: 1px solid #eee; }
+    code { background:#f3f4f6; padding:2px 6px; border-radius:6px; }
+  </style>
+</head>
+
+<body>
+  <h1>관리자 로그인</h1>
+
+  <div id="loginBox">
+    <input id="email" placeholder="email" />
+    <br/>
+    <input id="password" type="password" placeholder="password" />
+    <br/>
+    <button class="btn" id="btnLogin">로그인</button>
+    <p id="loginMsg"></p>
+  </div>
+
+  <div id="writeBox" style="display:none;">
+    <hr />
+
+    <h2>글 작성</h2>
+
+    <div class="row">
+      <span class="muted">카테고리:</span>
+      <select id="category" class="btn">
+        <option value="case" selected>case (현장사례)</option>
+        <option value="notice">notice (공지)</option>
+        <option value="guide">guide (가이드)</option>
+      </select>
+    </div>
+
+    <input id="title" placeholder="제목" style="width:min(820px,100%);" />
+    <br/>
+
+    <div class="row" style="align-items:flex-start;">
+      <div>
+        <div class="muted">대표 이미지(선택)</div>
+        <input id="imageFile" type="file" accept="image/*" />
+      </div>
+      <div>
+        <div class="muted">대표 이미지 미리보기</div>
+        <img id="preview" class="thumb" alt="" style="display:none;" />
+      </div>
+    </div>
+
+    <hr/>
+
+    <h3 style="margin:0 0 8px;">본문 이미지 여러 장 추가</h3>
+    <div class="row" style="align-items:flex-start;">
+      <div>
+        <input id="bodyImages" type="file" accept="image/*" multiple />
+        <br/>
+        <button class="btn" id="btnInsertImages" type="button">본문에 이미지 삽입</button>
+        <p class="muted" id="imgMsg"></p>
+        <p class="muted" style="max-width:820px;">
+          ✅ 사진 여러 장 선택 후 버튼을 누르면, 본문(content)에
+          <code>&lt;img src="..."&gt;</code> 가 자동으로 들어가요. (원하면 바로 캡션도 적을 수 있게 <code>&lt;p class="cap"&gt;</code>도 같이 넣어줌)
+        </p>
+      </div>
+    </div>
+
+    <div class="muted" style="margin-top:6px;">
+      본문은 <b>HTML</b>로 저장돼요. 예: <code>&lt;h2&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;img&gt;</code> 사용 가능
+    </div>
+
+    <textarea id="content" placeholder="내용(HTML 가능)" rows="12" style="width:min(820px,100%);"></textarea>
+
+    <br/>
+    <button class="btn" id="btnSave">저장</button>
+    <button class="btn" id="btnLogout">로그아웃</button>
+    <p id="writeMsg"></p>
+
+    <hr/>
+
+    <h2>작성한 글 목록</h2>
+    <p class="muted">제목 클릭: 미리보기 / 삭제: Firestore에서 완전 삭제</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:12%;">이미지</th>
+          <th style="width:43%;">제목</th>
+          <th style="width:12%;">카테고리</th>
+          <th style="width:18%;">등록일</th>
+          <th style="width:5%;">조회</th>
+          <th style="width:10%;">관리</th>
+        </tr>
+      </thead>
+      <tbody id="adminList"></tbody>
+    </table>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut }
+      from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    import {
+      getFirestore, collection, addDoc, serverTimestamp,
+      getDocs, deleteDoc, doc, query, orderBy
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    import { getStorage, ref, uploadBytes, getDownloadURL }
+      from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+    // ✅ Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCyVedJuQp-WlVgxElhPLw87kBT_hbCy3k",
+      authDomain: "youth-it-2e80e.firebaseapp.com",
+      projectId: "youth-it-2e80e",
+      storageBucket: "youth-it-2e80e.firebasestorage.app",
+      messagingSenderId: "647500223077",
+      appId: "1:647500223077:web:aaa5dd04468463173eec8c",
+      measurementId: "G-LKD00C81X2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    // DOM
+    const loginBox = document.getElementById("loginBox");
+    const writeBox = document.getElementById("writeBox");
+    const loginMsg = document.getElementById("loginMsg");
+    const writeMsg = document.getElementById("writeMsg");
+    const adminList = document.getElementById("adminList");
+
+    const imageFile = document.getElementById("imageFile");
+    const preview = document.getElementById("preview");
+
+    const bodyImages = document.getElementById("bodyImages");
+    const btnInsertImages = document.getElementById("btnInsertImages");
+    const imgMsg = document.getElementById("imgMsg");
+    const contentEl = document.getElementById("content");
+
+    const fmtDate = (ts) => {
+      if (!ts) return "-";
+      const d = ts.toDate ? ts.toDate() : new Date(ts);
+      return d.toLocaleDateString("ko-KR", { year:"numeric", month:"2-digit", day:"2-digit" });
+    };
+
+    // 대표 이미지 미리보기
+    imageFile.addEventListener("change", () => {
+      const f = imageFile.files?.[0];
+      if (!f) { preview.style.display = "none"; preview.src = ""; return; }
+      preview.src = URL.createObjectURL(f);
+      preview.style.display = "block";
+    });
+
+    // 커서 위치에 HTML 삽입
+    function insertAtCursor(textarea, text) {
+      const start = textarea.selectionStart ?? textarea.value.length;
+      const end = textarea.selectionEnd ?? textarea.value.length;
+      textarea.value = textarea.value.slice(0, start) + text + textarea.value.slice(end);
+      const nextPos = start + text.length;
+      textarea.focus();
+      textarea.selectionStart = textarea.selectionEnd = nextPos;
+    }
+
+    // 본문 이미지 여러 장 업로드 → content에 <img> 삽입
+    btnInsertImages.addEventListener("click", async () => {
+      const files = bodyImages.files ? Array.from(bodyImages.files) : [];
+      if (!files.length) {
+        imgMsg.textContent = "이미지를 먼저 선택해줘!";
+        return;
+      }
+
+      imgMsg.textContent = "이미지 업로드 중...";
+      btnInsertImages.disabled = true;
+
+      try {
+        for (const file of files) {
+          const safeName = file.name.replace(/\s+/g, "_");
+          const path = `posts/body/${Date.now()}_${Math.random().toString(16).slice(2)}_${safeName}`;
+          const storageRef = ref(storage, path);
+
+          await uploadBytes(storageRef, file);
+          const url = await getDownloadURL(storageRef);
+
+          const htmlBlock =
+`\n<img src="${url}" alt="" />\n<p class="cap"></p>\n`;
+          insertAtCursor(contentEl, htmlBlock);
+        }
+
+        imgMsg.textContent = "본문에 이미지 삽입 완료!";
+        bodyImages.value = "";
+      } catch (e) {
+        imgMsg.textContent = "이미지 삽입 실패: " + e.message;
+      } finally {
+        btnInsertImages.disabled = false;
+      }
+    });
+
+    async function loadAdminPosts() {
+      adminList.innerHTML = `<tr><td colspan="6" class="muted">불러오는 중...</td></tr>`;
+
+      const qy = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+      const snap = await getDocs(qy);
+
+      if (snap.empty) {
+        adminList.innerHTML = `<tr><td colspan="6" class="muted">등록된 글이 없습니다.</td></tr>`;
+        return;
+      }
+
+      adminList.innerHTML = "";
+      snap.forEach((d) => {
+        const data = d.data();
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${data.imageUrl ? `<img class="thumb" src="${data.imageUrl}" alt="">` : `<span class="muted">-</span>`}</td>
+          <td>
+            <a href="#" data-id="${d.id}" style="font-weight:900; text-decoration:underline;">
+              ${data.title || "(제목 없음)"}
+            </a>
+            <div class="muted" style="margin-top:6px; display:none;" id="pv-${d.id}">
+              ${(data.content || "").replaceAll("<","&lt;").replaceAll(">","&gt;").slice(0, 180)}${(data.content||"").length>180 ? "..." : ""}
+            </div>
+          </td>
+          <td class="muted">${data.category || "-"}</td>
+          <td class="muted">${fmtDate(data.createdAt)}</td>
+          <td class="muted">${data.views ?? 0}</td>
+          <td><button class="danger" data-del="${d.id}">삭제</button></td>
+        `;
+
+        tr.querySelector("a").addEventListener("click", (e) => {
+          e.preventDefault();
+          const pv = document.getElementById(`pv-${d.id}`);
+          pv.style.display = (pv.style.display === "none") ? "block" : "none";
+        });
+
+        tr.querySelector("button[data-del]").addEventListener("click", async () => {
+          if (!confirm("정말 삭제할까요? (되돌릴 수 없음)")) return;
+          await deleteDoc(doc(db, "posts", d.id));
+          await loadAdminPosts();
+        });
+
+        adminList.appendChild(tr);
+      });
+    }
+
+    // 로그인 상태 UI
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginBox.style.display = "none";
+        writeBox.style.display = "block";
+        loginMsg.textContent = "";
+        loadAdminPosts();
+      } else {
+        loginBox.style.display = "block";
+        writeBox.style.display = "none";
+      }
+    });
+
+    // 로그인
+    document.getElementById("btnLogin").addEventListener("click", async () => {
+      loginMsg.textContent = "로그인 시도중...";
+      try {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        await signInWithEmailAndPassword(auth, email, password);
+        loginMsg.textContent = "로그인 성공!";
+      } catch (e) {
+        loginMsg.textContent = "로그인 실패: " + e.message;
+      }
+    });
+
+    // 저장 (대표 이미지 업로드 후 imageUrl 저장 + content(HTML) 저장)
+    document.getElementById("btnSave").addEventListener("click", async () => {
+      writeMsg.textContent = "저장 중...";
+      try {
+        const category = document.getElementById("category").value;
+        const title = document.getElementById("title").value.trim();
+        const content = document.getElementById("content").value.trim();
+        const file = imageFile.files?.[0] || null;
+
+        if (!title || !content) {
+          writeMsg.textContent = "제목과 내용을 입력해줘!";
+          return;
+        }
+
+        let imageUrl = "";
+        if (file) {
+          const safeName = file.name.replace(/\s+/g, "_");
+          const path = `posts/cover/${Date.now()}_${Math.random().toString(16).slice(2)}_${safeName}`;
+          const storageRef = ref(storage, path);
+
+          await uploadBytes(storageRef, file);
+          imageUrl = await getDownloadURL(storageRef);
+        }
+
+        await addDoc(collection(db, "posts"), {
+          category,
+          title,
+          content,       // ✅ HTML 저장
+          imageUrl,      // ✅ 대표 이미지
+          views: 0,
+          createdAt: serverTimestamp()
+        });
+
+        writeMsg.textContent = "저장 완료!";
+        document.getElementById("title").value = "";
+        document.getElementById("content").value = "";
+
+        imageFile.value = "";
+        preview.style.display = "none";
+        preview.src = "";
+
+        bodyImages.value = "";
+        imgMsg.textContent = "";
+
+        await loadAdminPosts();
+      } catch (e) {
+        writeMsg.textContent = "저장 실패: " + e.message;
+      }
+    });
+
+    // 로그아웃
+    document.getElementById("btnLogout").addEventListener("click", async () => {
+      await signOut(auth);
+    });
+  </script>
+</body>
+</html>
