@@ -577,21 +577,31 @@ address{ font-style: normal; }
   color: #222;
 }
 
-.item-left a{ font-size: 14px; }
+.item-left a{
+  font-size: 14px;
+  position: relative;
+  display: inline-flex;   /* ✅ block 말고 inline-flex */
+  align-items: center;
+  gap: 6px;
+}
 
 .item-left{
-  display: inline-block;
   font-weight: 800;
   color: #2563eb;
   letter-spacing: -0.2px;
-  position: relative;
 }
 
-.item-left::after{
-  content: " →";
+.item-left a::after{
+  content: "→";
+  display: inline-block;  /* ✅ 핵심: transform 먹게 */
   transition: transform .2s ease;
+  will-change: transform;
 }
-.item-left:hover::after{ transform: translateX(4px); }
+
+.item-left a:hover::after{
+  transform: translateX(4px);
+}
+
 
 .item-right img{ border-radius: 12px; }
 
@@ -701,7 +711,7 @@ address{ font-style: normal; }
 
 
   /* hover 화살표 제거 */
-  .item-left::after{ content: ""; }
+  .item-left a::after{ content: ""; }
 
   .item-right img{
     border-radius: 14px;
@@ -716,8 +726,12 @@ address{ font-style: normal; }
 /* ==================================================
    9) CASES + FAQ + TIPS
    ================================================== */
-.sec-cases{ padding-top: clamp(40px, 6vw, 72px); 
-    background: #eee;
+/* ========================================
+   CASE SECTION
+======================================== */
+.sec-cases{
+  padding-top: clamp(40px, 6vw, 72px);
+  background: #eee;
 }
 
 .cases-grid{
@@ -727,73 +741,144 @@ address{ font-style: normal; }
   gap: 14px;
 }
 
+/* ========================================
+   CASE CARD
+======================================== */
 .case-card{
-  border-radius: 18px;
-  overflow: hidden;
-  background: #fff;
+  display: block;
   border: 1px solid var(--line);
-  box-shadow: 0 10px 30px rgba(15,23,42,.06);
-  display: flex;
-  flex-direction: column;
-  transition: transform .12s ease, box-shadow .12s ease;
-}
-.case-card:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(15,23,42,.10);
+  border-radius: 18px;
+  background: #fff;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 
-.case-thumb{
-  aspect-ratio: 16 / 10;
-  background: #f1f5f9;
+.case-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(15,23,42,.12);
+  border-color: rgba(37,99,235,.22);
 }
-.case-thumb img{
+
+/* ========================================
+   THUMBNAIL
+======================================== */
+.case-thumb{
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+/* 핵심: 이미지가 항상 박스에 맞게 */
+.case-thumb-img{
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.case-body{ padding: 14px 14px 16px; }
-
-.case-meta{
-  margin: 0 0 6px;
-  font-weight: 800;
-  letter-spacing: -0.2px;
-  color: var(--ink);
+/* 이미지 없을 때 */
+.case-thumb-ph{
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(37,99,235,.12),
+    rgba(124,58,237,.10)
+  );
 }
 
-.case-sub{
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.cases-more{
-  margin-top: 14px;
+/* ========================================
+   TEXT AREA
+======================================== */
+.case-body{
+  padding: 14px 14px 16px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: baseline;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.cases-link{
-  display: inline-block;
-  font-weight: 800;
-  color: var(--primary);
-  letter-spacing: -0.2px;
-  position: relative;
+.case-title{
+  font-weight: 900;
+  font-size: 15px;
+  line-height: 1.35;
+  color: #0f172a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.cases-link::after{
-  content: " →";
-  transition: transform .2s ease;
-  display: inline-block;
-}
-.cases-link:hover::after{ transform: translateX(4px); }
 
-.cases-link-sub{
-  color: var(--muted);
+/* 날짜 + 조회수 */
+.case-sub{
+  margin-top: 2px;
   font-size: 12px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
 }
+
+.case-dot{
+  opacity: .5;
+}
+
+.case-desc{
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #475569;
+}
+
+/* ========================================
+   BADGES
+======================================== */
+.case-badge-new,
+.case-badge-soon{
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 6px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.45);
+  color: #fff;
+}
+
+.case-badge-new{
+  background: rgba(37,99,235,.92);
+}
+
+.case-badge-soon{
+  background: rgba(124,58,237,.85);
+}
+
+/* 로딩 상태 */
+.case-card.is-loading{
+  opacity: .95;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 960px){
+  .cases-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px){
+  .cases-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
 
 /* 2-column info area */
 .info-split{
@@ -923,6 +1008,29 @@ address{ font-style: normal; }
   background: var(--primary);
 }
 
+.cases-link{
+  font-size: 14px;
+  position: relative;
+  display: inline-flex;   /* ✅ block 말고 inline-flex */
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: #2563eb;
+}
+
+.cases-link::after{
+  content: "→";
+  display: inline-block;  /* ✅ 핵심: transform 먹게 */
+  transition: transform .2s ease;
+  will-change: transform;
+}
+
+.cases-link:hover::after{
+  transform: translateX(4px);
+}
+
+
 /* ==================================================
    11) FOOTER
    ================================================== */
@@ -932,16 +1040,79 @@ address{ font-style: normal; }
   border-top: 1px solid var(--line);
   color: #334155;
 }
-.footer-links,
-.footer-email-refuse{
+.footer-links{
   width: min(1160px, 92%);
-  margin: 0 auto;
 }
 .footer-email-refuse{
   font-size: 13px;
   color: #64748b;
   line-height: 1.6;
 }
+
+/* ===============================
+   FOOTER
+=============================== */
+.site-footer {
+  background: #0f172a;
+  color: #cbd5f5;
+  padding-top: 60px;
+  font-size: 14px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  min-width: 200px;
+}
+
+.footer-logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.footer-col h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  color: #cbd5f5;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.footer-col a:hover {
+  color: #fff;
+}
+
+/* 하단 바 */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
 
 /* ==================================================
    13) DESKTOP NAV PANEL (mega panel)
@@ -1269,7 +1440,7 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
 }
 
 #finish{
-  padding: clamp(40px, 6vw, 72px) clamp(30px, 6vw, 56px);
+  padding: clamp(40px, 6vw, 72px) clamp(30px, 6vw, 56px) clamp(12px, 6vw, 24px);
 }
 
 /* PC 기본 */
@@ -1722,13 +1893,6 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
 .qc-panel[hidden],
 .qc-menu[hidden]{ display:none !important; }
 
-
-/* 기본값: 모바일 전용은 숨김(PC에서 안 보이게) */
-.qc-mfab,
-.qc-menu{ display:none; }
-
-
-
 /* =========================
    Desktop (PC)
    ========================= */
@@ -1737,10 +1901,10 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
   .qc-panel{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 120px;
+    gap: 20px;
+    width: 140px;
     margin-top: 0;             
-    padding: 12px;
+    padding: 24px;
     border-radius: 16px;
     backdrop-filter: blur(12px);
     background: var(--primary-grad);
@@ -1921,3 +2085,266 @@ body.mnav-open .mnav-drawer{ transform: translateX(0); }
     height: 100%;
   }
 }
+
+
+/* =========================
+   INFO SECTION (finish와 같은 가로 여백 느낌)
+   ========================= */
+/* =========================
+   INFO SECTION
+========================= */
+.info-sec{
+  padding: clamp(12px, 6vw, 24px) clamp(30px, 6vw, 56px) clamp(40px, 6vw, 72px);
+}
+.info-wrap{ width:100%; margin:0 auto; }
+
+.info-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  align-items:stretch;
+}
+
+.info-card{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+/* 헤더 row */
+.info-head-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+
+/* =========================
+   TABS UI
+========================= */
+.tabs{
+  display:inline-flex;
+  gap:8px;
+  background:rgba(37,99,235,.08);
+  border:1px solid rgba(37,99,235,.18);
+  padding:6px;
+  border-radius:999px;
+}
+.tab{
+  height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:13px;
+  color:#1e293b;
+  background:transparent;
+  transition:transform .15s ease, background .15s ease, color .15s ease;
+}
+.tab.is-active{
+  background:var(--primary-grad);
+  color:#fff;
+  box-shadow:0 10px 20px rgba(37,99,235,.22);
+}
+.tab:active{ transform:translateY(1px); }
+
+/* =========================
+   ✅ 오른쪽 탭 카드: 높이 고정(꿀팁 기준) + 내부스크롤 금지
+========================= */
+.info-tabs{
+  display:flex;
+  flex-direction:column;
+}
+
+/* tab-panels 높이는 JS가 꿀팁(scrollHeight)로 고정 */
+.info-tabs .tab-panels{
+  position:relative;
+  flex:0 0 auto;   /* ✅ 늘어나며 내부스크롤 생기는 구조 방지 */
+}
+
+/* 패널 겹치기(높이 변화 방지) */
+.info-tabs .tab-panel{
+  position:absolute;
+  inset:0;
+  padding-top:14px;
+  overflow:visible;      /* ✅ 내부 스크롤 금지 */
+}
+
+/* hidden 패널은 안 보이게 */
+.tab-panel[hidden]{ display:none !important; }
+
+/* =========================
+   MAP (LEFT)
+========================= */
+.map-box{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:14px;
+  align-items:stretch;
+  margin-top:14px;
+}
+
+.map-placeholder{
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:#f1f5f9;
+  width:100%;
+  aspect-ratio:16/10;
+  display:grid;
+  place-items:center;
+  color:#64748b;
+  font-weight:900;
+}
+
+.map-placeholder iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  border-radius:16px;
+}
+
+/* 지도 컨테이너 */
+.map-frame{
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* iframe 꽉 채우기 */
+.map-frame iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* 길찾기 버튼 */
+.map-route-btn{
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 5;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 14px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(6px);
+
+  font-weight: 900;
+  font-size: 13px;
+  color: #0f172a;
+  box-shadow: 0 10px 20px rgba(15,23,42,.12);
+  text-decoration: none;
+
+  transition: transform .18s ease, background .18s ease;
+}
+
+.map-route-btn:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.98);
+}
+.map-route-btn:active{
+  transform: translateY(0);
+}
+.map-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.map-meta p{
+  margin:0 0 8px;
+  font-size:14px;
+  color:#334155;
+  line-height:1.6;
+}
+.map-meta strong{
+  display:inline-block;
+  min-width:60px;
+  color:#0f172a;
+}
+
+.map-actions{
+  margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.map-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:36px;
+  padding:0 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  font-weight:900;
+  font-size:12px;
+  transition:transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.map-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(37,99,235,.06);
+  border-color:rgba(37,99,235,.22);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width:959px){
+  .info-grid{ grid-template-columns:1fr; }
+
+  .info-head-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .tabs{ width:100%; justify-content:center; }
+
+  .map-box{ grid-template-columns:1fr; }
+  .map-placeholder{ aspect-ratio:16/11; }
+
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* ✅ Swiper가 slide에 display:flex 주는 것 때문에 카드가 옆으로 깨짐 → 무조건 세로로 */
+.cases-swiper .swiper-slide{
+  display: block !important; /* swiper-slide의 flex 제거 */
+}
+
+/* ✅ case-card는 세로 레이아웃 강제 */
+.cases-swiper .case-card{
+  display: block !important; /* a 태그가 flex로 바뀌지 않게 */
+}
+
+/* 썸네일/바디는 원래대로(이미지 위, 텍스트 아래) */
+.cases-swiper .case-thumb{
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+.cases-swiper .case-body{
+  width: 100%;
+}
+#qc-menu[hidden] { display: none; }
+
+body.floating-hidden .qc-mfab,
+body.floating-hidden #qc-menu,
+body.floating-hidden .scroll-top {
+  display: none !important;
+}
+/* ✅ PC에서는 모바일 FAB(견적문의 버튼) 숨김 */
+@media (min-width: 960px){
+  .qc-mfab,
+  #qc-menu{
+    display: none !important;
+  }
+}
+
+
