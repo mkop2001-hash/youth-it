@@ -820,6 +820,7 @@ address{ font-style: normal; }
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  justify-content: center;
 }
 
 .case-dot{
@@ -2346,5 +2347,6 @@ body.floating-hidden .scroll-top {
     display: none !important;
   }
 }
+
 
 
