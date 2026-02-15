@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/m_style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <title>청년 it #</title>
+</head>
+
+<body>
+  <header class="main-head">
+    <div class="hed wrap spb">
+      <div class="logo">
+        <h1>
+          <a href="index.html">
+            <img src="images/logo.png" alt="청년 it #" />
+          </a>
+        </h1>
+      </div>
+
+      <button class="mnav-btn" type="button" aria-label="메뉴 열기" aria-controls="mnavDrawer" aria-expanded="false">
+        <span class="mnav-ic" aria-hidden="true"></span>
+      </button>
+
+      <nav class="gnb" aria-label="메인 메뉴">
+        <ul class="spb">
+          <li class="About" data-panel="panel-about">
+            <a href="about.html"><span>ABOUT US</span></a>
+          </li>
+
+          <li class="Purchase" data-panel="panel-guide">
+            <a href="case.html"><span>매입가이드</span></a>
+          </li>
+
+          <li class="Service" data-panel="panel-cs">
+            <a href="cs.html"><span>고객센터</span></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 모바일 메뉴-->
+  <div class="mnav-dim" id="mnavDim" hidden></div>
+
+  <aside class="mnav-drawer" id="mnavDrawer" aria-hidden="true">
+    <div class="mnav-top">
+      <p class="mnav-brand">청년 it #</p>
+      <button class="mnav-close" type="button" aria-label="메뉴 닫기">✕</button>
+    </div>
+
+    <nav class="mnav-menu" aria-label="모바일 메뉴">
+      <a class="mnav-link" href="about.html">ABOUT US</a>
+      <a class="mnav-link" href="case.html">매입가이드</a>
+      <a class="mnav-link" href="cs.html">고객센터</a>
+    </nav>
+
+    <div class="mnav-cta">
+      <a class="mnav-cta-btn primary" href="https://pf.kakao.com/채널ID" target="_blank" rel="noopener">
+        <span class="cs-icon"><img src="images/kakao2.png" alt="" class="kakao"></span> 카톡 문의
+      </a>
+      <a class="mnav-cta-btn" href="tel:01081888269">
+        <span class="cs-icon"><img src="images/phone1.png" alt=""></span>전화
+      </a>
+      <a class="mnav-cta-btn" href="mailto:godhig123@naver.com">
+        <span class="cs-icon"><img src="images/email1.png" alt=""></span>이메일
+      </a>
+    </div>
+  </aside>
+
+  <!-- 데스크탑 메뉴 -->
+  <div class="nav-panel" id="navPanel" aria-hidden="true">
+    <div class="nav-panel-inner">
+
+      <!-- ABOUT -->
+      <section class="nav-pane" id="panel-about" aria-label="ABOUT US 메뉴">
+        <div class="np-left">
+          <div class="np-top">
+            <p class="np-eyebrow">
+              <span class="npHashAnim np-hash"></span>
+            </p>
+            <div class="np-tbox">
+              <p class="np-title">중고 pc 매입 청년IT #</p>
+              <p class="np-text">PC와 노트북을 중심으로, 매입·빠른 정산·투명한 절차를 제공합니다. 상담부터 수거, 검수까지 한 번에 책임집니다.</p>
+            </div>
+          </div>
+          <a class="np-tell" href="tel:01081888269">010-8188-8269</a>
+        </div>
+
+        <div class="np-right">
+          <a class="np-card" href="about.html#us-intro">
+            <div>
+              <p>회사 소개</p>
+              <span>브랜드/운영 원칙</span>
+            </div>
+          </a>
+          <a class="np-card" href="about.html#us-point">
+            <div>
+              <p>신뢰 포인트</p>
+              <span>검수/정산/보안</span>
+            </div>
+          </a>
+          <a class="np-card" href="about.html#us-b2b">
+            <div>
+              <p>B2B 매입</p>
+              <span>기업·관공서 대량</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- GUIDE -->
+      <section class="nav-pane" id="panel-guide" aria-label="매입가이드 메뉴">
+        <div class="np-left">
+          <div class="np-top">
+            <p class="np-eyebrow">
+              <span class="npHashAnim np-hash"></span>
+            </p>
+            <div class="np-tbox">
+              <p class="np-title">중고 pc 매입 청년IT #</p>
+              <p class="np-text">PC와 노트북을 중심으로, 매입·빠른 정산·투명한 절차를 제공합니다. 상담부터 수거, 검수까지 한 번에 책임집니다.</p>
+            </div>
+          </div>
+          <a class="np-tell" href="tel:01081888269">010-8188-8269</a>
+        </div>
+
+        <div class="np-right">
+          <a class="np-card" href="case.html#cases"><div><p>매입 사례</p><span>매입 사례</span></div></a>
+          <a class="np-card" href="case.html#items"><div><p>매입 품목</p><span>노트북/PC/전산장비</span></div></a>
+          <a class="np-card" href="case.html#process"><div><p>매입 절차</p><span>5단계 프로세스</span></div></a>
+        </div>
+      </section>
+
+      <!-- CS -->
+      <section class="nav-pane" id="panel-cs" aria-label="고객센터 메뉴">
+        <div class="np-left">
+          <div class="np-top">
+            <p class="np-eyebrow">
+              <span class="npHashAnim np-hash"></span>
+            </p>
+            <div class="np-tbox">
+              <p class="np-title">중고 pc 매입 청년IT #</p>
+              <p class="np-text">PC와 노트북을 중심으로, 매입·빠른 정산·투명한 절차를 제공합니다. 상담부터 수거, 검수까지 한 번에 책임집니다.</p>
+            </div>
+          </div>
+          <a class="np-tell" href="tel:01081888269">010-8188-8269</a>
+        </div>
+
+        <div class="np-right">
+          <a class="np-card" href="cs.html#contact"><div><p>매입 문의</p><span>연락처/상담시간</span></div></a>
+          <a class="np-card" href="cs.html#faq"><div><p>FAQ/TIP</p><span>자주 묻는 질문/매입 업체 선정 TIP</span></div></a>
+          <a class="np-card" href="cs.html#map"><div><p>오시는 길</p><span>주소/주차 안내</span></div></a>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Main Swiper -->
+  <section id="main">
+    <div class="wrap">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images/1.png" alt="" />
+            <div class="swiper-tbox">
+              <p class="swiper-title">중고PC 매입</p>
+              <p class="swiper-text pc">중고 PC·노트북은 물론, 전산장비와 각종 IT 부품까지 상태와 사양을 기반으로 정확하고 투명한 매입 서비스를 제공합니다.</p>
+            </div>
+            <div class="swiper-link">
+              <a href="cs.html#contact">매입 견적 문의하기</a>
+            </div>
+          </div>
+
+          <div class="swiper-slide fff">
+            <img src="images/2.png" alt="" />
+            <div class="swiper-tbox">
+              <p class="swiper-title">복잡한 매입은 줄이고, <br class="pc"> 신뢰는 더했습니다</p>
+              <p class="swiper-text pc">상담 → 견적 → 방문 수거 → 검수 → 정산. 한 번에 이어지는 체계적인 IT 자산 매입 프로세스.</p>
+            </div>
+            <div class="swiper-link">
+              <a href="case.html#process" class="white">매입 절차 확인하기</a>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/3.png" alt="" />
+            <div class="swiper-tbox">
+              <p class="swiper-title"><span class="pc">기업 IT 자산, <br></span> 대량 매입도 한 번에</p>
+              <p class="swiper-text pc">리스트(엑셀/텍스트) 접수 후 방문 수거 및 서류 지원까지 원스톱으로 진행합니다.</p>
+            </div>
+            <div class="swiper-link">
+              <a href="about.html#us-b2b">B2B 대량매입</a>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/4.png" alt="" />
+            <div class="swiper-tbox">
+              <p class="swiper-title">찾아가는 방문 매입 서비스</p>
+              <p class="swiper-text pc">중고 PC·노트북부터 전산장비·부품까지. 담당자가 현장으로 방문해 수거하고, 검수 후 빠르게 정산합니다.</p>
+            </div>
+            <div class="swiper-link">
+              <a href="case.html#cases">방문수거 사례 확인하기</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-button-next pc"></div>
+        <div class="swiper-button-prev pc"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="us-service">
+    <div class="inner" data-aos="fade-up" data-aos-duration="3000">
+      <h2>청년it #의 지원 서비스</h2>
+      <p class="subtext">중고 컴퓨터 / 노트북 / 전산장비 매입 진행</p>
+      <ul class="ibox">
+        <li class="ser-icon"><img src="images/service-icon1.png" alt=""><p>pc(데스크탑)</p></li>
+        <li class="ser-icon"><img src="images/service-icon2.png" alt=""><p>노트북</p></li>
+        <li class="ser-icon"><img src="images/service-icon3.png" alt=""><p>관련 기기</p></li>
+        <li class="ser-icon"><img src="images/service-icon4.png" alt=""><p>부품</p></li>
+        <li class="ser-icon"><img src="images/service-icon5.png" alt=""><p>정직한 가격</p></li>
+        <li class="ser-icon"><img src="images/service-icon6.png" alt=""><p>빠른 진행</p></li>
+        <li class="ser-icon"><img src="images/service-icon7.png" alt=""><p>데이터 삭제</p></li>
+      </ul>
+
+      <div class="subbox">
+        <div class="itembox">
+          <div class="item-left">
+            <p>매입 가능 품목 <br>살펴보기</p>
+            <a href="case.html#items">Items We Buy</a>
+          </div>
+          <div class="item-right"><img src="images/list.jpg" alt=""></div>
+        </div>
+
+        <div class="itembox">
+          <div class="item-left">
+            <p>매입 절차 <br>자세히 알아보기</p>
+            <a href="case.html#process">How It Works</a>
+          </div>
+          <div class="item-right"><img src="images/process.jpg" alt=""></div>
+        </div>
+
+        <div class="itembox">
+          <div class="item-left">
+            <p>방문 수거,정산 <br>실제 사례 확인</p>
+            <a href="case.html#cases">Case Studies</a>
+          </div>
+          <div class="item-right"><img src="images/dlir.jpg" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">중고 컴퓨터 · 노트북 매입 / 전산장비 대량 매입</p>
+
+        <h2 class="hero-title">
+          기업·관공서도 개인도<br />
+          <span class="hero-accent" data-aos="fade-right" data-aos-duration="3000">빠르고 믿을 수 있게 매입</span>합니다
+        </h2>
+
+        <p class="hero-desc">
+          사진 2~3장 + 모델명/수량만 보내주시면 빠르게 견적 안내드립니다.<br />
+          대량 매입은 리스트(엑셀/텍스트)만 보내주셔도 가능합니다.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://pf.kakao.com/채널ID" target="_blank" rel="noopener">
+            <span class="cs-icon"><img src="images/kakao2.png" alt="" class="kakao"></span> 카톡으로 빠른 문의
+          </a>
+          <a class="btn btn-ghost" href="tel:01081888269">
+            <span class="cs-icon"><img src="images/phone1.png" alt=""></span> 전화 상담
+          </a>
+          <a class="btn btn-ghost"
+             href="mailto:godhig123@naver.com?subject=중고%20PC%2F노트북%20매입%20문의&body=이름:%0D%0A연락처:%0D%0A지역:%0D%0A품목:%0D%0A모델명/사양:%0D%0A수량:%0D%0A특이사항:%0D%0A(사진은%20카톡%20채널로%20첨부해%20주세요)">
+            <span class="cs-icon"><img src="images/email1.png" alt=""></span> 이메일
+          </a>
+        </div>
+
+        <ul class="hero-badges" aria-label="서비스 핵심 장점">
+          <li>✅ 기업·관공서 대량 매입</li>
+          <li>✅ 방문/택배 수거</li>
+          <li>✅ 데이터 삭제 안내</li>
+          <li>✅ 빠른 정산/서류 지원</li>
+        </ul>
+      </div>
+
+      <div class="hero-card" aria-label="문의 가이드 카드" data-aos="fade-up" data-aos-duration="3000">
+        <div class="hero-card-top">
+          <p class="hero-card-title">문의 시 이렇게 보내주시면 빨라요</p>
+          <p class="hero-card-sub">아래 4가지만 보내도 견적 가능</p>
+        </div>
+
+        <ol class="hero-steps">
+          <li><span class="step-num">1</span><div><p class="step-title">품목</p><p class="step-desc">노트북 / PC / 서버 / 네트워크장비</p></div></li>
+          <li><span class="step-num">2</span><div><p class="step-title">모델명·사양</p><p class="step-desc">CPU / RAM / SSD(HDD) / 화면크기</p></div></li>
+          <li><span class="step-num">3</span><div><p class="step-title">수량 & 지역</p><p class="step-desc">대량이면 리스트(엑셀/텍스트) OK</p></div></li>
+          <li><span class="step-num">4</span><div><p class="step-title">사진 2~3장</p><p class="step-desc">외관/모델 스티커/포트 부분</p></div></li>
+        </ol>
+
+        <div class="hero-mini-cta">
+          <a class="btn btn-primary btn-block" href="https://pf.kakao.com/채널ID" target="_blank" rel="noopener">
+            <span class="cs-icon"><img src="images/kakao2.png" alt="" class="kakao"></span> 카톡 채널 열기
+          </a>
+          <p class="hero-mini-note">
+            * 상담 가능 시간: <strong>[평일 10:00~19:00]</strong><br />
+            * 긴급 문의는 전화가 빠릅니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Items -->
+  <section class="sec sec-items" id="items-main">
+    <div class="sec-inner">
+      <header class="sec-head">
+        <h2 class="sec-title">매입 품목</h2>
+        <p class="sec-desc">노트북·PC가 메인, 전산장비는 대량 매입까지 확장 대응합니다.</p>
+      </header>
+
+      <div class="grid-items" data-aos="fade-up" data-aos-duration="3000">
+        <article class="card-item">
+          <div class="card-top">
+            <p class="card-kicker">MAIN</p>
+            <h3 class="card-title">중고 노트북 매입</h3>
+            <p class="card-sub">브랜드/사양/상태 기반 빠른 견적</p>
+          </div>
+          <ul class="card-list">
+            <li>모델명·사양 확인 후 견적 안내</li>
+            <li>외관/배터리/구성품 기준 반영</li>
+            <li>사진 2~3장으로도 가능</li>
+          </ul>
+          <a class="card-cta" href="https://pf.kakao.com/채널ID" target="_blank" rel="noopener">
+            <span class="cs-icon"><img src="images/kakao2.png" alt=""></span> 카톡으로 문의
+          </a>
+        </article>
+
+        <article class="card-item">
+          <div class="card-top">
+            <p class="card-kicker">MAIN</p>
+            <h3 class="card-title">중고 PC(데스크탑) 매입</h3>
+            <p class="card-sub">대량·단일 모두 상담 가능</p>
+          </div>
+          <ul class="card-list">
+            <li>CPU/RAM/SSD(HDD) 사양 반영</li>
+            <li>작동 상태/외관 상태 확인</li>
+            <li>방문/택배 수거 지원</li>
+          </ul>
+          <a class="card-cta" href="tel:01081888269">
+            <span class="cs-icon"><img src="images/phone1.png" alt=""></span> 전화 상담
+          </a>
+        </article>
+
+        <article class="card-item">
+          <div class="card-top">
+            <p class="card-kicker">B2B · BULK</p>
+            <h3 class="card-title">전산장비 대량 매입</h3>
+            <p class="card-sub">기업·관공서 전용 프로세스</p>
+          </div>
+          <ul class="card-list">
+            <li>서버/네트워크/모니터/프린터 등</li>
+            <li>리스트(엑셀/텍스트)로 접수 가능</li>
+            <li>정산/서류(세금계산서) 안내</li>
+          </ul>
+          <a class="card-cta"
+             href="mailto:godhig123@naver.com?subject=대량%20전산장비%20매입%20문의&body=회사명:%0D%0A담당자:%0D%0A연락처:%0D%0A품목/수량:%0D%0A지역:%0D%0A(리스트%20첨부%20가능)">
+            <span class="cs-icon"><img src="images/email1.png" alt=""></span> 이메일 문의
+          </a>
+        </article>
+      </div>
+
+      <div class="sec-note" data-aos="fade-up" data-aos-duration="3000">
+        <p><strong>Tip.</strong> “모델명/사양/수량/지역 + 사진”만 보내주셔도 견적 가능합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="sec sec-process" id="process-main">
+    <div class="sec-inner">
+      <header class="sec-head">
+        <h2 class="sec-title">매입 절차</h2>
+        <p class="sec-desc">복잡하게 하지 않습니다. 문의부터 정산까지 빠르고 투명하게 안내합니다.</p>
+      </header>
+
+      <div class="grid-process" data-aos="fade-up" data-aos-duration="3000">
+        <div class="step-card"><span class="step-pill">STEP 01</span><h3 class="step-h">문의</h3><p class="step-p">전화/카톡/이메일로 사진과 정보 전달</p></div>
+        <div class="step-card"><span class="step-pill">STEP 02</span><h3 class="step-h">견적 안내</h3><p class="step-p">사양·상태 기준으로 예상 매입가 안내</p></div>
+        <div class="step-card"><span class="step-pill">STEP 03</span><h3 class="step-h">수거</h3><p class="step-p">방문/택배 수거 중 편한 방식 선택</p></div>
+        <div class="step-card"><span class="step-pill">STEP 04</span><h3 class="step-h">검수</h3><p class="step-p">실물 상태 확인 후 최종 금액 확정</p></div>
+        <div class="step-card"><span class="step-pill">STEP 05</span><h3 class="step-h">정산</h3><p class="step-p">빠른 정산 및 기업 서류 안내(필요 시)</p></div>
+      </div>
+
+      <div class="process-cta" data-aos="fade-up" data-aos-duration="3000">
+        <div class="process-box">
+          <p class="process-title">바로 문의하기</p>
+          <p class="process-sub">지금 상담하면 더 빨리 처리할 수 있어요.</p>
+        </div>
+        <div class="process-btns">
+          <a class="btn btn-primary" href="https://pf.kakao.com/채널ID" target="_blank" rel="noopener">
+            <span class="cs-icon"><img src="images/kakao2.png" alt="" class="kakao"></span> 카톡 <span class="pc">문의</span>
+          </a>
+          <a class="btn btn-ghost" href="tel:01081888269">
+            <span class="cs-icon"><img src="images/phone1.png" alt=""></span> 전화
+          </a>
+          <a class="btn btn-ghost" href="mailto:godhig123@naver.com?subject=중고%20PC%2F노트북%20매입%20문의">
+            <span class="cs-icon"><img src="images/email1.png" alt=""></span> 이메일
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 방문수거 사례 -->
+  <section class="sec sec-cases" id="cases-main">
+    <div class="sec-inner" data-aos="fade-up" data-aos-duration="3000">
+      <header class="sec-head">
+        <h2 class="sec-title">현장 방문 수거 사례</h2>
+        <p class="sec-desc">실제 기업·관공서·개인 고객의 수거 현장을 확인해보세요.</p>
+      </header>
+
+      <div class="cases-swiper swiper">
+        <div class="swiper-wrapper">
+          <a class="case-card swiper-slide" id="caseCard1"></a>
+          <a class="case-card swiper-slide" id="caseCard2"></a>
+          <a class="case-card swiper-slide" id="caseCard3"></a>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="cases-more">
+        <a class="cases-link" href="case.html#cases">현장 수거 사례 더 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="finish">
+    <div class="finish-inner" data-aos="fade-up" data-aos-duration="3000">
+      <div class="finish-item">
+        <h2 class="fs-title">중고 PC 매입, 믿고 맡기세요.</h2>
+        <p class="fs-sub">상담부터 정산까지, 청년IT가 책임집니다.</p>
+        <div class="fs-link">
+          <a href="case.html">매입 가이드 보러가기</a>
+          <a href="cs.html#contact">매입 신청 하러가기</a>
+          <a href="case.html#cases">매입 사례 살펴보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section id="info" class="info-sec" data-aos="fade-up" data-aos-duration="3000">
+    <div class="info-wrap">
+      <div class="info-grid">
+
+        <section class="info-card info-map" aria-label="오시는 길 안내">
+          <header class="info-head">
+            <h3 class="info-title">이용안내</h3>
+            <p class="info-desc">상담/위치 정보를 확인해보세요.</p>
+          </header>
+
+          <div class="map-box">
+            <div class="map-meta">
+              <div class="map-text">
+                <p><strong>주소</strong> <br class="mob">인천 서구 완정로 208 상가동 1층 108호</p>
+                <p><strong>주차</strong> <br class="mob">매장 앞 주차 가능</p>
+                <p><strong>운영시간</strong> <br class="mob">평일 10:00~20:00</p>
+                <p><strong>매입방식</strong> <br class="mob">매장 방문 상담 · 방문 수거 · 택배 매입 가능</p>
+              </div>
+
+              <div class="map-actions">
+                <a class="map-btn" href="tel:01081888269">전화</a>
+                <a class="map-btn" href="https://pf.kakao.com/채널ID">카카오톡</a>
+                <a class="map-btn" href="mailto:godhig123@naver.com?subject=중고%20PC%2F노트북%20매입%20문의">이메일</a>
+                <a class="map-btn" href="#" target="_blank" rel="noopener">네이버지도</a>
+                <a class="map-btn" href="#" target="_blank" rel="noopener">카카오맵</a>
+              </div>
+            </div>
+
+            <div class="map-placeholder map-frame">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3160.906229793713!2d126.64932708851714!3d37.604365849848065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c8101ced6e711%3A0x9ce3b5b32018eda5!2z7J247LKc6rSR7Jet7IucIOyEnOq1rCDsmYTsoJXroZwgMjA4IDHsuLU!5e0!3m2!1sko!2skr!4v1770413345491!5m2!1sko!2skr"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+              <a class="map-route-btn"
+                 href="https://www.google.com/maps/dir/?api=1&destination=인천%20서구%20완정로%20208%20상가동%201층%20108호"
+                 target="_blank" rel="noopener">
+                길찾기
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="info-card info-tabs" aria-label="질문과 꿀팁">
+          <header class="info-head info-head-row">
+            <div>
+              <h3 class="info-title" id="infoTitle">안내</h3>
+              <p class="info-desc" id="infoDesc">자주 묻는 질문과 매입 꿀팁을 확인하세요.</p>
+            </div>
+
+            <div class="tabs" role="tablist" aria-label="질문/꿀팁 탭">
+              <button class="tab is-active" type="button" role="tab" aria-selected="true" aria-controls="tabPanelFaq" id="tabFaq">FAQ</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tabPanelTips" id="tabTips">TIP</button>
+            </div>
+          </header>
+
+          <div class="tab-panels">
+            <div class="tab-panel is-active" role="tabpanel" id="tabPanelFaq" aria-labelledby="tabFaq">
+              <div class="faq">
+                <details class="faq-item">
+                  <summary>방문 수거는 비용이 발생하나요?</summary>
+                  <div class="faq-body">대량 매입의 경우 대부분 무료 방문 수거를 지원합니다. (지역/수량에 따라 상이)</div>
+                </details>
+
+                <details class="faq-item">
+                  <summary>데이터는 어떻게 처리되나요?</summary>
+                  <div class="faq-body">요청 시 초기화/삭제 절차를 안내드리며, 필요 시 삭제 방식(초기화/완전삭제 등)을 상담합니다.</div>
+                </details>
+
+                <details class="faq-item">
+                  <summary>소량도 매입이 가능한가요?</summary>
+                  <div class="faq-body">네, 개인 고객도 1대부터 상담 가능합니다. 사진 2~3장과 모델명/사양을 보내주시면 빠릅니다.</div>
+                </details>
+
+                <details class="faq-item pc">
+                  <summary>정산은 언제 진행되나요?</summary>
+                  <div class="faq-body">검수 완료 후 최종 금액 확정 → 빠른 정산을 원칙으로 합니다. 기업 서류도 필요 시 안내드립니다.</div>
+                </details>
+
+                <div class="tips-cta">
+                  <a class="tips-link" href="cs.html#faq">더 많은 FAQ 보기</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" id="tabPanelTips" aria-labelledby="tabTips" hidden>
+              <ul class="tips">
+                <li><strong>견적 기준이 명확한지</strong><span>모델명·사양·상태 기준으로 안내되는지 확인하세요.</span></li>
+                <li><strong>데이터 보안 절차 안내 여부</strong><span>초기화/삭제 절차가 없는 업체는 주의가 필요합니다.</span></li>
+                <li><strong>정산 시점이 투명한지</strong><span>방문 후 정산인지, 검수 후 정산인지 꼭 확인하세요.</span></li>
+              </ul>
+
+              <div class="tips-cta">
+                <a class="tips-link" href="cs.html#tip">더 많은 TIP 보기</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-col">
+        <h2 class="footer-logo">청년IT #</h2>
+        <p>중고 컴퓨터 · 노트북 · 전산장비 매입 전문</p>
+        <p>신속한 방문수거 · 당일 정산</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li>대표 : 임창민</li>
+          <li>사업자 번호 : 886-48-01142</li>
+          <li>대표번호 : 010-8188-8269</li>
+          <li>이메일 : godhig123@naver.com</li>
+          <li>운영시간 : 10:00 ~ 20:00</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Menu</h3>
+        <ul>
+          <li><a href="case.html#items">매입 품목</a></li>
+          <li><a href="case.html#process">매입 절차</a></li>
+          <li><a href="case.html#cases">방문수거 사례</a></li>
+          <li><a href="cs.html#contact">문의하기</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <a href="terms.html">이용약관</a>
+        <span aria-hidden="true"> · </span>
+        <a href="policy.html">개인정보 처리방침</a>
+        <p class="footer-email-refuse">
+          본 웹사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 기타 기술적 장치를 이용하여 무단으로 수집되는 것을 거부합니다. <br>
+          이를 위반할 경우 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」에 의해 처벌받을 수 있습니다.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 청년IT # All rights reserved.</p>
+      <p class="credits">Images by Freepik & Unsplash</p>
+    </div>
+  </footer>
+
+  <!-- Quick Contact CTA -->
+  <div class="quick-contact" aria-label="빠른 문의">
+    <div id="qc-panel" class="qc-panel">
+      <a class="qc-item" href="tel:01081888269" data-channel="phone" aria-label="전화 문의">
+        <div class="item-text"><span class="cs-icon"><img src="images/phone1.png" alt="" class="kakao"></span> 전화상담</div>
+      </a>
+
+      <a class="qc-item" href="https://pf.kakao.com/채널ID" target="_blank" rel="noopener" data-channel="kakao" aria-label="카카오톡 채널 문의">
+        <div class="item-text"><span class="cs-icon"><img src="images/kakao2.png" alt="" class="kakao"></span> 카톡문의</div>
+      </a>
+
+      <a class="qc-item"
+         href="mailto:godhig123@naver.com"
+         data-channel="email" aria-label="이메일 문의">
+        <div class="item-text"><span class="cs-icon"><img src="images/email1.png" alt="" class="kakao"></span> 이메일</div>
+      </a>
+    </div>
+
+    <button class="qc-mfab" type="button" aria-expanded="false" aria-controls="qc-menu">견적문의</button>
+
+    <div id="qc-menu" class="qc-menu" hidden>
+      <button class="qc-close" type="button" aria-label="문의 메뉴 닫기">×</button>
+
+      <a class="qc-mitem" href="tel:01081888269" data-channel="phone">
+        <span class="cs-icon"><img src="images/phone1.png" alt=""></span> 전화
+      </a>
+
+      <a class="qc-mitem" href="https://pf.kakao.com/채널ID" target="_blank" rel="noopener" data-channel="kakao">
+        <span class="cs-icon"><img src="images/kakao2.png" alt=""></span> 카톡
+      </a>
+
+      <a class="qc-mitem"
+         href="mailto:godhig123@naver.com"
+         data-channel="email">
+        <span class="cs-icon"><img src="images/email1.png" alt=""></span> 이메일
+      </a>
+    </div>
+  </div>
+
+  <button class="scroll-top" aria-label="맨 위로">↑</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  <script src="js/swifer.js"></script>
+  <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+  <script src="js/header.js" defer></script>
+  <script src="js/index.js"></script>
+  <script type="module" src="js/home_cases.js"></script>
+</body>
+</html>
